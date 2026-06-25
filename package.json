@@ -1,0 +1,9 @@
+{
+    "name": "portfolio",
+    "private": true,
+    "scripts": {
+        "dev": "node dev.js",
+        "build": "npm run build --prefix frontend",
+        "start": "npm run start --prefix frontend"
+    }
+}
