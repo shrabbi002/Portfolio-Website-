@@ -30,8 +30,23 @@ const galleryRoutes = require('./routes/galleryRoutes');
 
 const app = express();
 
+// Trust Vercel's proxy headers for accurate client IP mapping in rate limiters
+app.set('trust proxy', 1);
+
 // Connect to MongoDB
 connectDB();
+
+// Middleware - CORS: allow all origins for development
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: false
+}));
+
+// Body parsers (MUST run before sanitization and routes)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // 1. Secure HTTP Headers with Helmet
 app.use(helmet({
@@ -40,7 +55,7 @@ app.use(helmet({
     crossOriginResourcePolicy: false, // Allow loading resources (like uploads) from different port/origin
 }));
 
-// 2. Prevent MongoDB Operator Injection (NoSQL Injection)
+// 2. Prevent MongoDB Operator Injection (NoSQL Injection) - now correctly runs after body parsers
 app.use((req, res, next) => {
     req.body = mongoSanitize(req.body);
     req.query = mongoSanitize(req.query);
@@ -73,17 +88,6 @@ const messageLimiter = rateLimit({
     message: { message: 'Too many messages sent, please try again after 15 minutes.' }
 });
 app.use('/api/contact/message', messageLimiter);
-
-// Middleware - CORS: allow all origins for development
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: false
-}));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // Static files (uploads) — override CORP header so frontend on different port can load images
 app.use('/uploads', (req, res, next) => {
