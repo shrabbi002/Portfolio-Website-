@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/public/Navbar";
 import Footer from "@/components/public/Footer";
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
   title: "MD Sakhawat Hossain Rabbi | Business Analyst | QA Engineer | AI/ML Researcher",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
