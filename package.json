@@ -5,5 +5,9 @@
         "dev": "node dev.js",
         "build": "npm run build --prefix frontend",
         "start": "npm run start --prefix frontend"
+    },
+    "dependencies": {
+        "@tailwindcss/postcss": "^4.3.2",
+        "tailwindcss": "^4.3.2"
     }
 }

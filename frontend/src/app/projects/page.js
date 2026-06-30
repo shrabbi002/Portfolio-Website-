@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import api from '@/lib/api';
 import Reveal from '@/components/shared/Reveal';
 
@@ -98,7 +99,7 @@ export default function ProjectsPage() {
 
                         return (
                             <Reveal key={project._id || i} direction="up" delay={(i % 3) * 0.08} duration={0.6}>
-                                <div
+                                <Link href={`/projects/${project._id}`}
                                     onMouseEnter={() => setHoveredId(project._id)}
                                     onMouseLeave={() => setHoveredId(null)}
                                     className={`group relative overflow-hidden rounded-3xl border ${theme.border} bg-dark-800/40 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full flex flex-col justify-between`}>
@@ -189,11 +190,21 @@ export default function ProjectsPage() {
                                                 </span>
                                             )}
                                         </div>
+
+                                        {/* View Details CTA */}
+                                        <div className="mt-5 pt-4 border-t border-white/5">
+                                            <span className="inline-flex items-center gap-2 text-primary-400 text-xs font-bold uppercase tracking-wider group-hover:gap-3 transition-all duration-300">
+                                                View Details & Process
+                                                <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                                </svg>
+                                            </span>
+                                        </div>
                                     </div>
 
                                     {/* Bottom gradient line */}
                                     <div className={`h-1 bg-gradient-to-r ${theme.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                                </div>
+                                </Link>
                             </Reveal>
                         );
                     })}

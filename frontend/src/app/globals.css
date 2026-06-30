@@ -589,3 +589,120 @@ h6 {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* === Project Detail Page Premium Styles === */
+@keyframes meshGradient {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 50% 0%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 100%; }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  25% { transform: translate(10px, -20px) scale(1.1); opacity: 0.6; }
+  50% { transform: translate(-5px, -40px) scale(0.9); opacity: 0.4; }
+  75% { transform: translate(15px, -20px) scale(1.05); opacity: 0.5; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(108, 92, 231, 0.2), 0 0 40px rgba(108, 92, 231, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(108, 92, 231, 0.5), 0 0 60px rgba(108, 92, 231, 0.2); }
+}
+
+@keyframes drawLine {
+  0% { height: 0; opacity: 0; }
+  10% { opacity: 1; }
+  100% { height: 100%; opacity: 1; }
+}
+
+@keyframes typeReveal {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+@keyframes orbitSlow {
+  0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+@keyframes orbitSlowReverse {
+  0% { transform: rotate(0deg) translateX(90px) rotate(0deg); }
+  100% { transform: rotate(-360deg) translateX(90px) rotate(360deg); }
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.08; }
+}
+
+@keyframes blobMorph {
+  0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: rotate(0deg); }
+  33% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; transform: rotate(120deg); }
+  66% { border-radius: 30% 70% 40% 60% / 50% 60% 40% 50%; transform: rotate(240deg); }
+}
+
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.project-detail-hero {
+  background-size: 400% 400%;
+  animation: meshGradient 15s ease infinite;
+}
+
+.project-detail-particle {
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.timeline-line-animated {
+  animation: drawLine 2s ease-out forwards;
+}
+
+.blob-morph {
+  animation: blobMorph 20s ease-in-out infinite;
+}
+
+.grid-bg-pattern {
+  background-image:
+    linear-gradient(rgba(108, 92, 231, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 92, 231, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+.browser-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(17, 17, 40, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.browser-frame-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(17, 17, 40, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(5, 5, 15, 0.95);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleIn 0.3s ease-out;
+}
